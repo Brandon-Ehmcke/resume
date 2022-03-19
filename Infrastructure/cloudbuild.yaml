@@ -1,0 +1,33 @@
+# Bucket to host the cloud function
+- name: cloudresume-visitorcount-functions
+  type: gcp-types/storage-v1:buckets
+  properties:
+    storageClass: REGIONAL
+    location: {{ properties['region'] }}
+    iamConfiguration:
+      uniformBucketLevelAccess:
+        enabled: true
+    labels:
+      app: cloudresume
+
+# Deploy the cloudfunction
+- name: cloudresume-visitor-count
+  type: gcp-types/cloudfunctions-v1:projects.locations.functions
+  properties:
+    function: cloudresume-visitor-count
+    parent: projects/{{ env['project'] }}/locations/{{ properties['region'] }}
+    entryPoint: visitor_count
+    runtime: python37
+    sourceArchiveUrl: gs://$(ref.cloudresume-visitorcount-functions.name)/{{ properties['function_file'] }}
+    maxInstances: 10
+    availableMemoryMb: 128
+    timeout: 3s
+    httpsTrigger: {}
+
+# Allow everyone to execute the function
+- name: cloudresume-public-execution
+  type: gcp-types/cloudfunctions-v1:virtual.projects.locations.functions.iamMemberBinding
+  properties:
+    resource: $(ref.cloudresume-visitor-count.name)
+    member: allUsers
+    role: roles/cloudfunctions.invoker
