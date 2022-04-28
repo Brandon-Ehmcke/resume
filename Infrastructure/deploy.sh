@@ -3,8 +3,8 @@
 export PROJECT_ID=$(gcloud config get-value core/project)
 
 # Deploy Workflow
-gcloud workflows deploy myFirstWorkflow \
---source=myFirstWorkflow.yaml
+gcloud workflows deploy CountWorkflow \
+--source=cloudbuild.yaml
 
 # Deploy (private) Function
 gcloud functions deploy runWorkflowFunction \
