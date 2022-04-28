@@ -1,17 +1,22 @@
-const projectId = process.env.PROJECT_ID;
+ const projectId = process.env.PROJECT_ID;
 
 /**
  * Run Workflow Cloud Function
  */
 exports.runWorkflow = async (req, res) => {
-  if (req.method !== 'POST') {
-    return res.status(405).send('Only POST method is allowed');
+    res.set('Access-Control-Allow-Origin', '*');
+    if (req.method === 'OPTIONS') {
+      // Send response to OPTIONS requests
+      res.set('Access-Control-Allow-Methods', 'POST');
+      res.set('Access-Control-Allow-Headers', 'Content-Type');
+      res.set('Access-Control-Max-Age', '3600');
+      res.status(204).send('');
   }
   const workflowsAPI = await callWorkflowsAPI();
   if (!workflowsAPI.success) {
-    return res.status(400).send(`Error running workflow. Result: ${workflowsAPI.result}`)
+    return res.status(400).send(`Error running workflow. response: ${workflowsAPI.result}`)
   }
-  res.send(`Result: ${workflowsAPI.result}`);
+  res.send(` ${workflowsAPI.result}`);
 };
 
 const {ExecutionsClient} = require('@google-cloud/workflows');
@@ -21,8 +26,8 @@ const client = new ExecutionsClient();
  * Calls the Workflow API and waits for the execution result.
  */
 async function callWorkflowsAPI() {
-  const location = 'us-central1';
-  const workflow = 'myFirstWorkflow';
+  const location = 'us-west1';
+  const workflow = 'workflow-1';
   
   // Execute workflow
   try {
