@@ -1,13 +1,12 @@
 steps:
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  args:
-  - gcloud
-  - functions
-  - deploy
-  - runWorkflowFunction
-  - --region=us-west1
-  - --source=.
-  - --trigger-http
-  - --runtime=nodejs12
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['install']
+  dir: 'resume/Infrastructure'
+- name: 'gcr.io/cloud-builders/npm'
+  args: ['test']
+  dir: 'resume/Infrastructure'
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['functions', 'deploy', 'runWorkflowFunction', '--trigger-http', '--runtime', 'nodejs12', '--entry-point', 'runWorkflowFunction']
+  dir: 'resume/Infrastructure'
 options:
   logging: CLOUD_LOGGING_ONLY
