@@ -1,7 +1,4 @@
 steps:
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['install']
-  dir: 'Infrastructure'
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['functions', 'deploy', 'runWorkflowFunction', '--source=.', '--trigger-http', '--runtime=nodejs12', '--entry-point', 'runWorkflowFunction', '--allow-unauthenticated']
   dir: 'Infrastructure'
