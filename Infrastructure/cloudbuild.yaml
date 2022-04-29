@@ -3,7 +3,7 @@ steps:
   args: ['install']
   dir: 'Infrastructure'
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['functions', 'deploy', 'runWorkflowFunction', '--trigger-http', '--runtime', 'nodejs12', '--entry-point', 'runWorkflowFunction']
+  args: ['functions', 'deploy', 'runWorkflowFunction', '--source=.', '--trigger-http', '--runtime=nodejs12', '--entry-point', 'runWorkflowFunction', '--allow-unauthenticated']
   dir: 'Infrastructure'
 options:
   logging: CLOUD_LOGGING_ONLY
