@@ -4,4 +4,4 @@ steps:
   dir: 'Infrastructure'
 options:
   logging: CLOUD_LOGGING_ONLY
-env: 'us-west1'
+  
