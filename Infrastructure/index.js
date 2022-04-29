@@ -3,7 +3,7 @@
 /**
  * Run Workflow Cloud Function
  */
-exports.runWorkflow = async (req, res) => {
+exports.runWorkflowFunction = async (req, res) => {
     res.set('Access-Control-Allow-Origin', '*');
     if (req.method === 'OPTIONS') {
       // Send response to OPTIONS requests
