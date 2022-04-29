@@ -2,9 +2,6 @@ steps:
 - name: 'gcr.io/cloud-builders/npm'
   args: ['install']
   dir: 'Infrastructure'
-- name: 'gcr.io/cloud-builders/npm'
-  args: ['test']
-  dir: 'Infrastructure'
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['functions', 'deploy', 'runWorkflowFunction', '--trigger-http', '--runtime', 'nodejs12', '--entry-point', 'runWorkflowFunction']
   dir: 'Infrastructure'
