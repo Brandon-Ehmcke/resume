@@ -5,4 +5,4 @@ steps:
 options:
   logging: CLOUD_LOGGING_ONLY
     env:
-    - 'PROJECT_ID=$proud-armor-341523'
+    - 'PROJECT_ID=proud-armor-341523'
