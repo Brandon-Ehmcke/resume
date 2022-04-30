@@ -1,8 +1,8 @@
 steps:
+  env: 'PROJECT_ID = proud-armor-341523'
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['functions', 'deploy', 'runWorkflowFunction', '--source=.', '--trigger-http', '--runtime=nodejs12', '--entry-point', 'runWorkflow', '--allow-unauthenticated', '--region', 'us-west1']
   dir: 'Infrastructure'
-  env: 'PROJECT_ID = proud-armor-341523'
 options:
   logging: CLOUD_LOGGING_ONLY
 
