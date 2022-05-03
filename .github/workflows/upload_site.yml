@@ -14,8 +14,8 @@ jobs:
     - id: 'upload-file'
       uses: 'google-github-actions/upload-cloud-storage@v0'
       with:
-        path: '/path/to/file'
-        destination: 'bucket-name/file'
+        path: 'resume/WebPage/Resume.html'
+        destination: 'www.ehmcke.com/resume.html'
 
     # Example of using the output
     - id: 'uploaded-files'
