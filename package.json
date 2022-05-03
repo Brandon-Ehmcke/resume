@@ -1,0 +1,11 @@
+{
+  "name": "runWorkflowFunction",
+  "main": "index.js",
+  "scripts": {
+    "start": "functions-framework --function-target=runWorkflow"
+  },
+  "dependencies": {
+    "@google-cloud/functions-framework": "~2.0.0-beta.1",
+    "@google-cloud/workflows": "^1.1.0"
+  }
+}
