@@ -70,3 +70,6 @@ async function callWorkflowsAPI() {
     };
   }
 }
+/**
+ * Proof of CI-CD completion VSCODE
+ */
